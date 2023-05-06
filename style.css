@@ -1,0 +1,295 @@
+:root {
+    --color: #222;
+    --size: 4px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Tahoma, Arial;
+}
+
+.container {
+    margin: 20px auto;
+    width: 1000px
+}
+
+.row {
+    display: flex;
+}
+
+hr {
+    border: 1px solid #EEE;
+}
+
+.game-info {
+    display: flex;
+
+}
+
+.game-info .game-name {
+    flex: 1;
+}
+
+.game-info .category {
+    flex: 1;
+    text-align: right;
+}
+
+.game-info .category span {
+    text-transform: capitalize;
+    color: #E91E63;
+    font-weight: bold;
+}
+
+.hangman-draw {
+    flex: 1;
+    /*we're telling the item to grow and shrink equally with the other items in the flex container, and to start out with a default size of 0. */
+    background-color: #F8F8F8;
+    padding: 20px;
+    height: 32var(--size);
+}
+
+.hangman-draw .the-draw {
+    width: 60px;
+    height: 280px;
+    border-bottom: var(--size) solid var(--color);
+    position: relative;
+    margin: auto;
+    left: -60px;
+    display: none;
+}
+
+.hangman-draw .the-stand {
+    position: absolute;
+    width: var(--size);
+    background-color: var(--color);
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    display: none;
+}
+
+.hangman-draw .the-hang {
+    display: none;
+}
+
+.hangman-draw .the-hang:before {
+    content: '';
+    position: absolute;
+    height: var(--size);
+    background-color: var(--color);
+    width: 100px;
+    left: 30px;
+    top: 15px;
+}
+
+.hangman-draw .the-hang:after {
+    content: '';
+    position: absolute;
+    width: var(--size);
+    height: 30px;
+    background-color: var(--color);
+    left: 130px;
+    top: 15px;
+}
+
+.hangman-draw .the-rope {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    left: 95px;
+    top: 45px;
+    border: var(--size) dashed var(--color);
+    display: none;
+}
+
+.hangman-draw .the-man .head {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: var(--size) solid var(--color);
+    position: absolute;
+    left: 105px;
+    top: 55px;
+    display: none;
+}
+
+.hangman-draw .the-man .body {
+    position: absolute;
+    background-color: var(--color);
+    width: var(--size);
+    height: 110px;
+    top: 102px;
+    left: 130px;
+    display: none;
+}
+
+.hangman-draw .the-man .hands {
+    display: none;
+}
+
+.hangman-draw .the-man .hands:before {
+    left: 85px;
+    transform: rotate(30deg);
+}
+
+.hangman-draw .the-man .hands:after {
+    left: 130px;
+    transform: rotate(-30deg);
+}
+
+.hangman-draw .the-man .hands:before,
+.hangman-draw .the-man .hands:after {
+    content: '';
+    width: 50px;
+    position: absolute;
+    height: var(--size);
+    background-color: var(--color);
+    top: 140px;
+}
+
+.hangman-draw .the-man .legs {
+    display: none;
+}
+
+.hangman-draw .the-man .legs:before {
+    left: 85px;
+    transform: rotate(-30deg);
+}
+
+.hangman-draw .the-man .legs:after {
+    left: 130px;
+    transform: rotate(30deg);
+}
+
+.hangman-draw .the-man .legs:before,
+.hangman-draw .the-man .legs:after {
+    /*grouping attributes*/
+    content: '';
+    width: 50px;
+    position: absolute;
+    height: var(--size);
+    background-color: var(--color);
+    top: 220px;
+}
+
+.hangman-draw.wrong-1 .the-draw {
+    display: block;
+}
+
+.hangman-draw.wrong-2 .the-stand {
+    display: block;
+}
+
+.hangman-draw.wrong-3 .the-hang {
+    display: block;
+}
+
+.hangman-draw.wrong-4 .the-rope {
+    display: block;
+}
+
+.hangman-draw.wrong-5 .head {
+    display: block;
+}
+
+.hangman-draw.wrong-6 .body {
+    display: block;
+}
+
+.hangman-draw.wrong-7 .hands {
+    display: block;
+}
+
+.hangman-draw.wrong-8 .legs {
+    display: block;
+}
+
+.letters {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+}
+
+.letters.Finished {
+    pointer-events: none;
+}
+
+.letters .letter-box {
+    width: 55px;
+    height: 55px;
+    display: inline-block;
+    background-color: #009688;
+    color: #FFF;
+    font-size: 24px;
+    margin-right: 10px;
+    line-height: 55px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    /* to make the letter as a clickable button*/
+    margin-bottom: 10px;
+}
+
+.letters .letter-box.clicked {
+    background-color: var(--color);
+    opacity: .2;
+    pointer-events: none;
+}
+
+.letters-guess {
+    margin: 10px auto;
+    background-color: #F8F8F8;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 104px;
+}
+
+.letters-guess span {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #FDFDFD;
+    border-bottom: 3px solid var(--color);
+    transition: .3s;
+}
+
+.letters-guess span.with-space {
+    background: none;
+    border-bottom: none;
+    position: relative;
+}
+
+.letters-guess span.with-space:before {
+    content: '';
+    width: 20px;
+    height: 4px;
+    background-color: #222;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup {
+    position: fixed;
+    background-color: #009688;
+    padding: 100px 20px;
+    width: 80%;
+    top: 10%;
+    left: 10%;
+    text-align: center;
+    font-size: 40px;
+    border: 1px solid #CCC;
+    color: #FFF;
+}
